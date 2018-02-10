@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/phanan/cascading-config.svg)](https://gemnasium.com/phanan/cascading-config)
 [![License](https://poser.pugx.org/phanan/cascading-config/license.svg)](https://packagist.org/packages/phanan/cascading-config)
 
-A simple package that brings the cascading configuration system back into Laravel 5 and its sister project, Lumen.
+A simple package that brings the cascading configuration system back into Laravel 5.
 
 ## Requirements
 
