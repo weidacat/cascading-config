@@ -17,12 +17,10 @@ A simple package that brings the cascading configuration system back into Larave
 
 ## Installation
 
-First, require `phanan/cascading-config` into your `composer.json` and run `composer update`:
+First, require `weidacat/cascading-config` into your `composer.json` and run `composer update`:
 
 ```
-    "require": {
-        "phanan/cascading-config": "~2.0"
-    },
+composer require "weidacat/cascading-config:dev-master"
 ```
 
 An environment-based configuration directory should have a name with this format `config.{APP_ENV}`, and reside in the same directory as the default `config` dir. For Laravel, `php artisan vendor:publish`
@@ -65,7 +63,7 @@ Fill the configuration into your environment-based config directory (`config.loc
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        PhanAn\CascadingConfig\CascadingConfigServiceProvider::class,
+        Weidacat\CascadingConfig\CascadingConfigServiceProvider::class,
     ],
     ```
     
@@ -78,24 +76,8 @@ Fill the configuration into your environment-based config directory (`config.loc
     ```php
     // $app->register(App\Providers\AppServiceProvider::class);
     // $app->register(App\Providers\EventServiceProvider::class);
-    $app->register(PhanAn\CascadingConfig\CascadingConfigServiceProvider::class);
+    $app->register(Weidacat\CascadingConfig\CascadingConfigServiceProvider::class);
     ```
-
-1. Enable multi-environment support by uncommenting this line:
-
-    ```php
-    Dotenv::load(__DIR__.'/../');
-    ```
-
-1. Manually register the configuration arrays:
-
-    ```php
-    $app->configure('auth');
-    $app->configure('cache');
-    $app->configure('mail');
-    ```
-
-1. Call `config($key)`
 
 ## Notes
 

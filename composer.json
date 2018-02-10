@@ -1,5 +1,5 @@
 {
-  "name": "phanan/cascading-config",
+  "name": "weidacat/cascading-config",
   "description": "Bringing the cascading configuration system back to Laravel 5.",
   "keywords": [
     "laravel",
@@ -9,13 +9,18 @@
     "cascading",
     "cascade"
   ],
-  "homepage": "https://github.com/phanan/cascading-config",
+  "homepage": "https://github.com/weidacat/cascading-config",
   "license": "MIT",
   "authors": [
     {
       "name": "Phan An",
       "email": "me@phanan.net",
       "homepage": "http://phanan.net"
+    },
+    {
+      "name": "Weida Lin",
+      "email": "weidaalone@163.com",
+      "role": "Packager"
     }
   ],
   "require": {
@@ -27,7 +32,14 @@
   },
   "autoload": {
     "psr-4": {
-      "PhanAn\\CascadingConfig\\": "src"
+      "Weidacat\\CascadingConfig\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Weidacat\\CascadingConfig\\CascadingConfigServiceProvider"
+      ]
     }
   }
 }

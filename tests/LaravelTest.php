@@ -3,7 +3,7 @@
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
-use PhanAn\CascadingConfig\CascadingConfigServiceProvider;
+use Weidacat\CascadingConfig\CascadingConfigServiceProvider;
 
 class LaravelTest extends PHPUnit_Framework_TestCase
 {
@@ -37,13 +37,13 @@ class LaravelTest extends PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $this->f->delete($this->app->configPath().'/../config.foo');
+        $this->f->delete($this->app->configPath().'/../config/foo');
     }
 
     public function testConfigCascaded()
     {
-        $this->f->makeDirectory($this->app->configPath().'/../config.foo', 0755, true, true);
-        $this->f->put($this->app->configPath().'/../config.foo/app.php', "<?php return ['url' => 'http://cascaded.dev', 'foo' => 'bar'];");
+        $this->f->makeDirectory($this->app->configPath().'/../config/foo', 0755, true, true);
+        $this->f->put($this->app->configPath().'/../config/foo/app.php', "<?php return ['url' => 'http://cascaded.dev', 'foo' => 'bar'];");
         $this->setupServiceProvider();
 
         $this->assertEquals($this->app['config']->get('app.url'), 'http://cascaded.dev');
@@ -52,8 +52,8 @@ class LaravelTest extends PHPUnit_Framework_TestCase
 
     public function testNestedConfigSupported()
     {
-        $this->f->makeDirectory($this->app->configPath().'/../config.foo/nested', 0755, true, true);
-        $this->f->put($this->app->configPath().'/../config.foo/nested/sample.php', "<?php return ['foo' => 'bar'];");
+        $this->f->makeDirectory($this->app->configPath().'/../config/foo/nested', 0755, true, true);
+        $this->f->put($this->app->configPath().'/../config/foo/nested/sample.php', "<?php return ['foo' => 'bar'];");
         $this->setupServiceProvider();
 
         $this->assertEquals($this->app['config']->get('nested.sample.foo'), 'bar');

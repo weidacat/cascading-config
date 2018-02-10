@@ -1,6 +1,6 @@
 <?php
 
-namespace PhanAn\CascadingConfig;
+namespace Weidacat\CascadingConfig;
 
 use Illuminate\Support\ServiceProvider;
 use SplFileInfo as SysSplFileInfo;
@@ -26,7 +26,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
     {
         $env = $this->app->environment();
 
-        $envConfigPath = (new SysSplFileInfo(dirname($this->getConfigPath())."/config.$env"))->getRealPath();
+        $envConfigPath = (new SysSplFileInfo($this->getConfigPath()."/.$env"))->getRealPath();
 
         if (!file_exists($envConfigPath) ||  !is_dir($envConfigPath)) {
             // Nothing to do here
