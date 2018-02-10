@@ -15,7 +15,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/local' => $this->getConfigPath('../config/local'),
+            __DIR__ . '/config/local' => $this->getConfigPath('../config/local'),
         ]);
     }
 
@@ -26,9 +26,9 @@ class CascadingConfigServiceProvider extends ServiceProvider
     {
         $env = $this->app->environment();
 
-        $envConfigPath = (new SysSplFileInfo($this->getConfigPath()."/.$env"))->getRealPath();
+        $envConfigPath = (new SysSplFileInfo($this->getConfigPath() . "/" . $env))->getRealPath();
 
-        if (!file_exists($envConfigPath) ||  !is_dir($envConfigPath)) {
+        if (!file_exists($envConfigPath) || !is_dir($envConfigPath)) {
             // Nothing to do here
             return;
         }
@@ -42,7 +42,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
             // Then, use array_replace_recursive() to merge the environment config values
             // into the base values.
 
-            $keyName = $this->getConfigurationNesting($envConfigPath, $file).basename($file->getRealPath(), '.php');
+            $keyName = $this->getConfigurationNesting($envConfigPath, $file) . basename($file->getRealPath(), '.php');
 
             $oldValues = $config->get($keyName) ?: [];
             $newValues = require $file->getRealPath();
@@ -56,7 +56,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
      * Get the configuration file nesting path.
      * This method is shamelessly copied from \Illuminate\Foundation\Bootstrap\LoadConfiguration.php.
      *
-     * @param string                                $envConfigPath
+     * @param string $envConfigPath
      * @param \Symfony\Component\Finder\SplFileInfo $file
      *
      * @return string
@@ -66,7 +66,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
         $directory = dirname($file->getRealPath());
 
         if ($tree = trim(str_replace($envConfigPath, '', $directory), DIRECTORY_SEPARATOR)) {
-            $tree = str_replace(DIRECTORY_SEPARATOR, '.', $tree).'.';
+            $tree = str_replace(DIRECTORY_SEPARATOR, '.', $tree) . '.';
         }
 
         return $tree;
@@ -85,7 +85,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
     {
         // Lumen >=5.1.6 exposes a getConfigurationPath() method.
         if ($this->isLumen()) {
-            return $this->app->getConfigurationPath().$path;
+            return $this->app->getConfigurationPath() . $path;
         }
 
         // Laravel comes with a config_path() helper.
