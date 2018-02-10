@@ -8,8 +8,7 @@ A simple package that brings the cascading configuration system back into Larave
 
 ## Requirements
 
-* Laravel 5, or
-* Lumen >=5.1
+* Laravel 5
 
 ## Features
 * Laravel-4 style cascading config (can't believe I'm writing this)
@@ -23,8 +22,8 @@ First, require `weidacat/cascading-config` into your `composer.json` and run `co
 composer require "weidacat/cascading-config:dev-master"
 ```
 
-An environment-based configuration directory should have a name with this format `config.{APP_ENV}`, and reside in the same directory as the default `config` dir. For Laravel, `php artisan vendor:publish`
-will create a sample directory for your `local` environment. For Lumen, you'll have to create the directories manually.
+An environment-based configuration directory should have a name with this format `config/{APP_ENV}`, and reside in the same directory as the default `config` dir. For Laravel, `php artisan vendor:publish`
+will create a sample directory for your `local` environment.
 
 Your application structure now should have something like this:
 
@@ -36,13 +35,12 @@ config
 ├── compile.php
 ├── database.php
 ├── mail.php
-└── ...
-config.local
-├── app.php
-├── auth.php
-├── cache.php
-├── mail.php
-└── nested
+└── local
+    ├── app.php
+    ├── auth.php
+    ├── cache.php
+    ├── mail.php
+    └── nested
     └── app.php
 ```
 
@@ -65,18 +63,6 @@ Fill the configuration into your environment-based config directory (`config.loc
 
         Weidacat\CascadingConfig\CascadingConfigServiceProvider::class,
     ],
-    ```
-    
-1.  Call `config($key)`
-
-### For Lumen
-
-1. Register the service provider class in `bootstrap/app.php`:
-
-    ```php
-    // $app->register(App\Providers\AppServiceProvider::class);
-    // $app->register(App\Providers\EventServiceProvider::class);
-    $app->register(Weidacat\CascadingConfig\CascadingConfigServiceProvider::class);
     ```
 
 ## Notes

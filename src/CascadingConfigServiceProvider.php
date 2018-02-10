@@ -15,7 +15,7 @@ class CascadingConfigServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config.local' => $this->getConfigPath('../config.local'),
+            __DIR__.'/config/local' => $this->getConfigPath('../config/local'),
         ]);
     }
 
